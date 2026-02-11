@@ -1,7 +1,7 @@
 // app/page.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Heart, 
   Users, 
@@ -15,68 +15,136 @@ import {
   Globe,
   HandHeart,
   Brain,
-  Shield
+  Shield,
+  CheckCircle,
+  ArrowRight,
+  Star,
+  Mail,
+  Phone,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+  Clock,
+  Target,
+  Lightbulb,
+  Handshake,
+  Quote
 } from 'lucide-react';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [email, setEmail] = useState('');
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle subscription logic
-    alert('Asante! Thank you for subscribing. We will be in touch soon.');
+    alert('Asante sana! Thank you for subscribing. We will be in touch soon.');
     setEmail('');
   };
 
+  const testimonials = [
+    {
+      quote: "This training transformed how we care for children in our orphanage in Arusha. We now understand behavior as communication.",
+      author: "Maria Ndosi",
+      role: "Director, Hope Children's Home",
+      location: "Arusha, Tanzania"
+    },
+    {
+      quote: "As a teacher in Dar es Salaam, I see traumatized children daily. Now I have the tools to help them regulate and learn.",
+      author: "Joseph Mwinyi",
+      role: "Primary School Teacher",
+      location: "Dar es Salaam, Tanzania"
+    },
+    {
+      quote: "The culturally-adapted approach made all the difference. This isn't just Western psychology—it's relevant to East African communities.",
+      author: "Dr. Sarah Ochieng",
+      role: "Clinical Psychologist",
+      location: "Nairobi, Kenya"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white font-sans text-slate-800">
+      {/* Top Bar */}
+      <div className="bg-slate-900 text-white py-2 text-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <span className="flex items-center space-x-1">
+              <MapPin className="w-3 h-3" />
+              <span>Serving East Africa • Headquarters: Dar es Salaam, Tanzania</span>
+            </span>
+          </div>
+          <div className="hidden sm:flex items-center space-x-4">
+            <a href="tel:+255123456789" className="hover:text-orange-400 transition-colors flex items-center space-x-1">
+              <Phone className="w-3 h-3" />
+              <span>+255 123 456 789</span>
+            </a>
+            <a href="mailto:info@traumacompetentcare.org" className="hover:text-orange-400 transition-colors flex items-center space-x-1">
+              <Mail className="w-3 h-3" />
+              <span>info@traumacompetentcare.org</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Navigation */}
-      <nav className="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+      <nav className={`transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-full flex items-center justify-center">
-                <Heart className="w-6 h-6 text-white" fill="currentColor" />
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl flex items-center justify-center shadow-lg">
+                <Heart className="w-7 h-7 text-orange-500" fill="currentColor" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-gray-900 leading-tight">Trauma Competent Care</span>
-                <span className="text-xs text-teal-600 font-medium">East Africa Initiative</span>
+                <span className="text-xl font-bold text-slate-900 leading-tight tracking-tight">Trauma Competent Care</span>
+                <span className="text-xs text-orange-600 font-semibold tracking-wider uppercase">East Africa Initiative</span>
               </div>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#about" className="text-gray-700 hover:text-teal-600 transition-colors font-medium">About</a>
-              <a href="#training" className="text-gray-700 hover:text-teal-600 transition-colors font-medium">Training</a>
-              <a href="#impact" className="text-gray-700 hover:text-teal-600 transition-colors font-medium">Our Impact</a>
-              <a href="#resources" className="text-gray-700 hover:text-teal-600 transition-colors font-medium">Resources</a>
-              <button className="bg-teal-600 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-teal-700 transition-all transform hover:scale-105">
+            <div className="hidden lg:flex items-center space-x-8">
+              <a href="#about" className="text-slate-700 hover:text-orange-600 transition-colors font-medium text-sm uppercase tracking-wide">About Us</a>
+              <a href="#training" className="text-slate-700 hover:text-orange-600 transition-colors font-medium text-sm uppercase tracking-wide">Training</a>
+              <a href="#impact" className="text-slate-700 hover:text-orange-600 transition-colors font-medium text-sm uppercase tracking-wide">Our Impact</a>
+              <a href="#trainers" className="text-slate-700 hover:text-orange-600 transition-colors font-medium text-sm uppercase tracking-wide">Become a Trainer</a>
+              <a href="#resources" className="text-slate-700 hover:text-orange-600 transition-colors font-medium text-sm uppercase tracking-wide">Resources</a>
+              <button className="bg-orange-500 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 shadow-lg shadow-orange-500/30 text-sm">
                 Get Started
               </button>
             </div>
 
             {/* Mobile Menu Button */}
             <button 
-              className="md:hidden p-2"
+              className="lg:hidden p-2 text-slate-900"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="w-6 h-6 text-gray-900" /> : <Menu className="w-6 h-6 text-gray-900" />}
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t">
-            <div className="px-4 pt-2 pb-6 space-y-2">
-              <a href="#about" className="block px-3 py-2 text-gray-700 hover:bg-teal-50 rounded-md">About</a>
-              <a href="#training" className="block px-3 py-2 text-gray-700 hover:bg-teal-50 rounded-md">Training</a>
-              <a href="#impact" className="block px-3 py-2 text-gray-700 hover:bg-teal-50 rounded-md">Our Impact</a>
-              <a href="#resources" className="block px-3 py-2 text-gray-700 hover:bg-teal-50 rounded-md">Resources</a>
-              <button className="w-full mt-4 bg-teal-600 text-white px-6 py-3 rounded-full font-semibold">
-                Get Started
+          <div className="lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+            <div className="px-4 pt-2 pb-6 space-y-1">
+              <a href="#about" className="block px-4 py-3 text-slate-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg font-medium">About Us</a>
+              <a href="#training" className="block px-4 py-3 text-slate-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg font-medium">Training</a>
+              <a href="#impact" className="block px-4 py-3 text-slate-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg font-medium">Our Impact</a>
+              <a href="#trainers" className="block px-4 py-3 text-slate-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg font-medium">Become a Trainer</a>
+              <a href="#resources" className="block px-4 py-3 text-slate-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg font-medium">Resources</a>
+              <button className="w-full mt-4 bg-orange-500 text-white px-6 py-3 rounded-full font-semibold">
+                Get Started Today
               </button>
             </div>
           </div>
@@ -84,150 +152,271 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-emerald-50 opacity-70" />
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-teal-100/30 to-transparent" />
+      <section 
+        className="relative min-h-[90vh] flex items-center overflow-hidden bg-slate-50 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(/section1/image1.jpeg)'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-slate-800/70 to-orange-900/50" />
+        <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-blue-950/30 to-transparent" />
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center space-x-2 bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-semibold">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8 max-w-2xl">
+              <div className="inline-flex items-center space-x-2 bg-white border border-orange-200 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
                 <MapPin className="w-4 h-4" />
-                <span>Serving East Africa • Based in Tanzania</span>
+                <span>Now Serving Tanzania, Kenya, Uganda & Rwanda</span>
               </div>
               
-              <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Healing Communities Through{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">
-                  Trauma Competent Care
+              <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] tracking-tight">
+                Healing Starts With{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
+                  Understanding
                 </span>
               </h1>
               
-              <p className="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-2xl">
-                Empowering caregivers, educators, and community leaders across East Africa with culturally-responsive trauma-informed practices. Building resilient communities, one connection at a time.
+              <p className="text-xl text-slate-600 leading-relaxed">
+                Equipping caregivers, educators, and community leaders across East Africa with trauma-informed knowledge and culturally-responsive practices. Together, we are building resilient communities where every child and adult can thrive.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-teal-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-teal-700 transition-all transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg shadow-teal-600/30">
-                  <Play className="w-5 h-5" />
-                  <span>Start Free Course</span>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <button className="bg-orange-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-orange-600 transition-all transform hover:scale-105 flex items-center justify-center space-x-2 shadow-xl shadow-orange-500/30">
+                  <Play className="w-5 h-5" fill="currentColor" />
+                  <span>Start Free Intro Course</span>
                 </button>
-                <button className="bg-white text-teal-600 border-2 border-teal-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-teal-50 transition-all flex items-center justify-center">
-                  <span>Learn More</span>
-                  <ChevronRight className="w-5 h-5 ml-1" />
+                <button className="bg-white text-slate-800 border-2 border-slate-200 px-8 py-4 rounded-full font-semibold text-lg hover:border-orange-500 hover:text-orange-600 transition-all flex items-center justify-center group">
+                  <span>Explore Programs</span>
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
 
-              <div className="flex items-center space-x-6 pt-4">
+              <div className="flex items-center space-x-8 pt-6 border-t border-slate-200">
                 <div className="flex -space-x-3">
-                  {[1,2,3,4].map((i) => (
-                    <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-emerald-400 border-2 border-white flex items-center justify-center text-white text-xs font-bold">
-                      {i === 1 ? 'TZ' : i === 2 ? 'KE' : i === 3 ? 'UG' : 'RW'}
+                  {['TZ', 'KE', 'UG', 'RW'].map((country, i) => (
+                    <div key={country} className="w-12 h-12 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 border-3 border-white flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                      {country}
                     </div>
                   ))}
                 </div>
-                <p className="text-sm text-gray-600">
-                  <span className="font-bold text-gray-900">500+</span> trained across East Africa
-                </p>
+                <div>
+                  <p className="font-bold text-slate-900 text-lg">1,200+ Professionals Trained</p>
+                  <p className="text-slate-500 text-sm">Across 4 East African Countries</p>
+                </div>
               </div>
             </div>
             
-            <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <div className="aspect-[4/3] bg-gradient-to-br from-teal-100 to-emerald-100 flex items-center justify-center">
-                  {/* Placeholder for hero image - replace with actual image */}
-                  <div className="text-center p-8">
-                    <Users className="w-24 h-24 text-teal-600 mx-auto mb-4 opacity-50" />
-                    <p className="text-gray-500">Community Training Session</p>
+            <div className="relative lg:h-[600px] flex items-center justify-center">
+              <div className="relative w-full max-w-lg">
+                <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-[2rem] opacity-20 blur-2xl" />
+                <div className="relative bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-slate-100">
+                  <div className="aspect-[4/5] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center relative">
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent z-10" />
+                    <Users className="w-32 h-32 text-slate-300" />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20 text-white">
+                      <p className="text-sm font-semibold uppercase tracking-wider text-orange-400 mb-2">Featured Story</p>
+                      <h3 className="text-2xl font-bold mb-2">Transforming Care in Moshi</h3>
+                      <p className="text-slate-200 text-sm">How one community changed their approach to vulnerable children</p>
+                    </div>
                   </div>
                 </div>
-                <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center">
-                      <Play className="w-6 h-6 text-white" fill="currentColor" />
+                
+                {/* Floating Stats Card */}
+                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-slate-100 z-30">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                      <Star className="w-6 h-6 text-orange-600" fill="currentColor" />
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900">Watch Our Story</p>
-                      <p className="text-sm text-gray-600">See how we are transforming care in Tanzania</p>
+                      <p className="text-2xl font-bold text-slate-900">98%</p>
+                      <p className="text-sm text-slate-500">Satisfaction Rate</p>
                     </div>
                   </div>
                 </div>
               </div>
-              
-              {/* Decorative elements */}
-              <div className="absolute -top-6 -right-6 w-24 h-24 bg-yellow-400 rounded-full opacity-20 blur-2xl" />
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-teal-400 rounded-full opacity-20 blur-2xl" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Introduction Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-            Trauma Affects Our Communities Deeply
+      <section id="about" className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-8 leading-tight">
+            Trauma is the Hidden Barrier to<br />
+            <span className="text-orange-500">Connection and Growth</span>
           </h2>
-          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-            From the streets of Dar es Salaam to rural villages in Arusha, trauma impacts children, families, and communities across Tanzania and East Africa. It is often the invisible barrier preventing connection, education, and positive change. We are here to help you understand and respond with compassion.
+          <p className="text-xl text-slate-600 mb-12 leading-relaxed max-w-3xl mx-auto">
+            Across East Africa, from the bustling streets of Dar es Salaam to the rural communities of Arusha, trauma affects children, families, and professionals in ways we often do not recognize. It manifests as behavioral challenges, learning difficulties, and broken relationships—but it does not have to be this way.
           </p>
           
-          {/* Email Signup */}
-          <form onSubmit={handleSubscribe} className="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email address"
-              className="flex-1 px-6 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-              required
-            />
-            <button 
-              type="submit"
-              className="bg-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-700 transition-all whitespace-nowrap"
-            >
-              Subscribe
-            </button>
-          </form>
-          <p className="text-xs text-gray-500 mt-3">
-            By subscribing, you agree to our Terms and Conditions. Join our community of caregivers.
-          </p>
+          <div className="bg-slate-50 rounded-3xl p-8 lg:p-12 border border-slate-100">
+            <h3 className="text-2xl font-bold text-slate-900 mb-6">Begin Your Journey Today</h3>
+            <p className="text-slate-600 mb-8">Join thousands of East African professionals learning to create trauma-informed environments</p>
+            
+            <form onSubmit={handleSubscribe} className="max-w-lg mx-auto flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email address"
+                className="flex-1 px-6 py-4 rounded-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-lg"
+                required
+              />
+              <button 
+                type="submit"
+                className="bg-slate-900 text-white px-8 py-4 rounded-full font-semibold hover:bg-slate-800 transition-all whitespace-nowrap text-lg shadow-lg"
+              >
+                Get Access
+              </button>
+            </form>
+            <p className="text-xs text-slate-500 mt-4">
+              By subscribing, you agree to our Terms and Conditions. We respect your privacy.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Three Pillars Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">The Three Pillars of Trauma Competent Care</h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">Our approach is built on three foundational principles that guide every interaction and intervention</p>
+          </div>
+          
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 icon: Brain,
                 title: 'Understand',
-                description: 'Learn the impact of trauma on brain development and behavior, with focus on experiences common in East African contexts.',
-                color: 'bg-blue-100 text-blue-600'
+                description: 'Deepen your knowledge of how trauma affects brain development, behavior, and relationships. Learn about adverse childhood experiences (ACEs) common in East African contexts and their long-term impacts.',
+                color: 'bg-blue-50 text-blue-600',
+                borderColor: 'border-blue-200'
               },
               {
                 icon: HandHeart,
                 title: 'Recognize',
-                description: 'Identify overwhelming emotions and challenging behaviors rooted in traumatic stress within your community and family settings.',
-                color: 'bg-rose-100 text-rose-600'
+                description: 'Identify signs of traumatic stress in children and adults. Learn to see beyond challenging behaviors to the unmet needs and pain beneath, whether in classrooms, clinics, or communities.',
+                color: 'bg-rose-50 text-rose-600',
+                borderColor: 'border-rose-200'
               },
               {
                 icon: Shield,
                 title: 'Respond',
-                description: 'Develop skills to respond with connection and cultural understanding rather than punishment or exclusion.',
-                color: 'bg-emerald-100 text-emerald-600'
+                description: 'Develop practical skills to respond with empathy, connection, and cultural sensitivity. Move from punishment to healing, from exclusion to inclusion, from fear to safety.',
+                color: 'bg-emerald-50 text-emerald-600',
+                borderColor: 'border-emerald-200'
               }
             ].map((pillar, index) => (
               <div 
                 key={index} 
-                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-slate-100 group"
               >
-                <div className={`w-16 h-16 ${pillar.color} rounded-2xl flex items-center justify-center mb-6`}>
-                  <pillar.icon className="w-8 h-8" />
+                <div className={`w-20 h-20 ${pillar.color} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300`}>
+                  <pillar.icon className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{pillar.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{pillar.description}</p>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">{pillar.title}</h3>
+                <p className="text-slate-600 leading-relaxed mb-6">{pillar.description}</p>
+                <a href="#" className="inline-flex items-center text-orange-600 font-semibold hover:text-orange-700 transition-colors">
+                  Learn more <ChevronRight className="w-4 h-4 ml-1" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Training Programs Section */}
+      <section id="training" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="text-orange-600 font-semibold uppercase tracking-wider text-sm">Our Programs</span>
+            <h2 className="text-4xl font-bold text-slate-900 mt-2 mb-4">Training Designed for East Africa</h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">From introductory courses to professional certification, we offer training that fits your needs and schedule</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Free Intro Course */}
+            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-all duration-500" />
+              <div className="relative z-10">
+                <div className="inline-flex items-center space-x-2 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-6">
+                  <Star className="w-4 h-4" fill="currentColor" />
+                  <span>Most Popular</span>
+                </div>
+                <h3 className="text-3xl font-bold mb-4">Introduction to Trauma-Informed Care</h3>
+                <p className="text-slate-300 mb-6 text-lg">Perfect for beginners. This 20-minute course introduces the fundamentals of trauma and its impact on individuals and communities in East Africa.</p>
+                
+                <ul className="space-y-3 mb-8">
+                  {['Completely free', 'Available in English and Swahili', 'Mobile-friendly format', 'Certificate of completion'].map((item, i) => (
+                    <li key={i} className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-orange-500" />
+                      <span className="text-slate-200">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <button className="bg-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-600 transition-all w-full sm:w-auto">
+                  Start Learning Free
+                </button>
+              </div>
+            </div>
+
+            {/* Advanced Certification */}
+            <div className="bg-white border-2 border-slate-100 rounded-3xl p-8 lg:p-12 hover:border-orange-200 transition-all duration-300 group">
+              <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold mb-6">
+                <Award className="w-4 h-4" />
+                <span>Professional</span>
+              </div>
+              <h3 className="text-3xl font-bold text-slate-900 mb-4">Trauma Competent Care Certification</h3>
+              <p className="text-slate-600 mb-6 text-lg">Comprehensive 40-hour certification program for professionals. Deep dive into trauma theory, practical interventions, and organizational implementation.</p>
+              
+              <ul className="space-y-3 mb-8">
+                {['In-person and virtual options', 'Culturally-adapted curriculum', 'Ongoing mentorship included', 'Recognized certification'].map((item, i) => (
+                  <li key={i} className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-emerald-500" />
+                    <span className="text-slate-600">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <button className="bg-slate-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-slate-800 transition-all w-full sm:w-auto">
+                View Curriculum
+              </button>
+            </div>
+          </div>
+
+          {/* Additional Program Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mt-8">
+            {[
+              {
+                icon: Users,
+                title: 'Organizational Training',
+                desc: 'Customized workshops for schools, NGOs, and healthcare facilities',
+                duration: '1-3 days'
+              },
+              {
+                icon: Globe,
+                title: 'Community Workshops',
+                desc: 'Accessible training for community leaders and caregivers',
+                duration: 'Half-day'
+              },
+              {
+                icon: Clock,
+                title: 'Continuing Education',
+                desc: 'Advanced modules for certified professionals',
+                duration: 'Ongoing'
+              }
+            ].map((program, index) => (
+              <div key={index} className="bg-slate-50 rounded-2xl p-6 hover:bg-white hover:shadow-lg transition-all duration-300 border border-transparent hover:border-slate-100">
+                <program.icon className="w-10 h-10 text-orange-500 mb-4" />
+                <h4 className="text-xl font-bold text-slate-900 mb-2">{program.title}</h4>
+                <p className="text-slate-600 mb-4">{program.desc}</p>
+                <div className="flex items-center text-sm text-slate-500">
+                  <Clock className="w-4 h-4 mr-1" />
+                  {program.duration}
+                </div>
               </div>
             ))}
           </div>
@@ -235,196 +424,320 @@ export default function Home() {
       </section>
 
       {/* Affiliate Trainer Program Section */}
-      <section className="py-20 bg-white overflow-hidden">
+      <section id="trainers" className="py-24 bg-slate-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <div className="aspect-square bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
-                  {/* Placeholder for training image */}
-                  <div className="text-center p-8">
-                    <Award className="w-24 h-24 text-amber-600 mx-auto mb-4 opacity-50" />
-                    <p className="text-gray-500">Trainer Certification Session</p>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1 relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-200 to-orange-300 rounded-[2rem] opacity-30 blur-2xl" />
+              <div className="relative bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-slate-100">
+                <div className="aspect-[4/3] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                  <div className="text-center p-12">
+                    <Award className="w-24 h-24 text-slate-300 mx-auto mb-4" />
+                    <p className="text-slate-500 font-medium">Affiliate Trainer Certification</p>
                   </div>
                 </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-8">
+                  <p className="text-white font-semibold text-lg">Join our network of 50+ certified trainers across East Africa</p>
+                </div>
+              </div>
+              
+              {/* Floating Badge */}
+              <div className="absolute -top-6 -right-6 bg-orange-500 text-white rounded-2xl p-4 shadow-xl z-10">
+                <p className="text-3xl font-bold">50+</p>
+                <p className="text-sm opacity-90">Certified Trainers</p>
               </div>
             </div>
             
             <div className="order-1 lg:order-2 space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-semibold">
-                <Users className="w-4 h-4" />
-                <span>Become a Trainer</span>
+              <div className="inline-flex items-center space-x-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold">
+                <Target className="w-4 h-4" />
+                <span>Expand Your Impact</span>
               </div>
               
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-                Join Our Affiliate Trainer Program
+              <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+                Become a Certified Affiliate Trainer
               </h2>
               
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Trauma Competent Care East Africa&apos;s Affiliate Trainer Program empowers local leaders, social workers, teachers, and healthcare providers to bring trauma-informed care training into their communities. This program equips Tanzanian and East African trainers to create meaningful change and foster resilience.
+              <p className="text-lg text-slate-600 leading-relaxed">
+                Our Affiliate Trainer Program empowers local professionals—social workers, teachers, counselors, and healthcare providers—to bring trauma-informed care training to their own communities. This is not just training; it is a movement led by East Africans for East Africans.
               </p>
               
-              <ul className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4 py-4">
                 {[
-                  'Comprehensive training materials in Swahili and English',
-                  'Ongoing mentorship and support',
-                  'Access to global best practices adapted for local contexts',
-                  'Join a network of East African trauma-informed care advocates'
+                  { icon: BookOpen, text: 'Comprehensive training manual in Swahili & English' },
+                  { icon: Handshake, text: 'Ongoing mentorship and support' },
+                  { icon: Globe, text: 'Access to global best practices' },
+                  { icon: Users, text: 'Join a network of change-makers' }
                 ].map((item, index) => (
-                  <li key={index} className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <ChevronRight className="w-4 h-4 text-teal-600" />
+                  <div key={index} className="flex items-start space-x-3 p-4 bg-white rounded-xl border border-slate-100">
+                    <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-5 h-5 text-orange-600" />
                     </div>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
+                    <span className="text-slate-700 font-medium text-sm">{item.text}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
               
-              <button className="bg-teal-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-teal-700 transition-all transform hover:scale-105 inline-flex items-center space-x-2">
-                <span>Learn More</span>
-                <ChevronRight className="w-5 h-5" />
-              </button>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <button className="bg-orange-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-orange-600 transition-all transform hover:scale-105 inline-flex items-center justify-center space-x-2 shadow-lg shadow-orange-500/30">
+                  <span>Apply Now</span>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+                <button className="bg-white text-slate-700 border-2 border-slate-200 px-8 py-4 rounded-full font-semibold hover:border-orange-500 hover:text-orange-600 transition-all">
+                  Download Brochure
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Advanced Training Section */}
-      <section className="py-20 bg-gradient-to-br from-teal-900 to-emerald-900 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold">
-                <BookOpen className="w-4 h-4" />
-                <span>Advanced Certification</span>
+      {/* Impact Section */}
+      <section id="impact" className="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-orange-500/10 to-transparent" />
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Our Impact Across East Africa</h2>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">Measurable change in communities throughout Tanzania and beyond</p>
+          </div>
+          
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {[
+              { number: '1,200+', label: 'Professionals Trained', sublabel: 'Across 4 countries' },
+              { number: '18', label: 'Regions in Tanzania', sublabel: 'Active programs' },
+              { number: '85+', label: 'Partner Organizations', sublabel: 'Schools, NGOs, clinics' },
+              { number: '25,000+', label: 'Children Impacted', sublabel: 'Through trained adults' }
+            ].map((stat, index) => (
+              <div key={index} className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-colors">
+                <p className="text-4xl lg:text-5xl font-bold text-orange-500 mb-2">{stat.number}</p>
+                <p className="font-semibold text-white text-lg">{stat.label}</p>
+                <p className="text-slate-400 text-sm">{stat.sublabel}</p>
               </div>
-              
-              <h2 className="text-3xl lg:text-4xl font-bold">
-                Advanced Trauma Competent Care Certification
-              </h2>
-              
-              <p className="text-lg text-teal-100 leading-relaxed">
-                This intensive program provides rigorous understanding of how to implement trauma-informed principles in schools, hospitals, orphanages, and community organizations across Tanzania and East Africa. Move from awareness to full competency.
+            ))}
+          </div>
+
+          {/* Testimonials */}
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10">
+              <Quote className="w-12 h-12 text-orange-500 mb-6 opacity-50" />
+              <blockquote className="text-2xl lg:text-3xl font-medium text-white mb-8 leading-relaxed">
+                "{testimonials[activeTestimonial].quote}"
+              </blockquote>
+              <div className="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                  <p className="font-bold text-white text-lg">{testimonials[activeTestimonial].author}</p>
+                  <p className="text-orange-400">{testimonials[activeTestimonial].role}</p>
+                  <p className="text-slate-400 text-sm">{testimonials[activeTestimonial].location}</p>
+                </div>
+                <div className="flex space-x-2">
+                  {testimonials.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveTestimonial(idx)}
+                      className={`w-3 h-3 rounded-full transition-all ${idx === activeTestimonial ? 'bg-orange-500 w-8' : 'bg-white/30 hover:bg-white/50'}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <span className="text-orange-600 font-semibold uppercase tracking-wider text-sm">Why Trauma Competent Care</span>
+              <h2 className="text-4xl font-bold text-slate-900 mt-2 mb-6 leading-tight">Culturally-Responsive, Evidence-Based, Community-Focused</h2>
+              <p className="text-lg text-slate-600 mb-8">
+                We do not just import Western models. We collaborate with local experts, elders, and professionals to ensure our training resonates with East African values, traditions, and contexts.
               </p>
               
-              <div className="grid sm:grid-cols-2 gap-4 pt-4">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                  <p className="font-bold text-2xl mb-1">40+ Hours</p>
-                  <p className="text-teal-200 text-sm">Of intensive training</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                  <p className="font-bold text-2xl mb-1">Certificate</p>
-                  <p className="text-teal-200 text-sm">Recognized across East Africa</p>
-                </div>
+              <div className="space-y-6">
+                {[
+                  {
+                    title: 'Local Expertise',
+                    desc: 'Our curriculum is developed in partnership with Tanzanian and East African mental health professionals',
+                    icon: MapPin
+                  },
+                  {
+                    title: 'Sustainable Impact',
+                    desc: 'We train local trainers, ensuring knowledge stays and grows within the community',
+                    icon: Lightbulb
+                  },
+                  {
+                    title: 'Holistic Approach',
+                    desc: 'Addressing spiritual, emotional, and physical aspects of healing in line with African holistic health perspectives',
+                    icon: Heart
+                  }
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-6 h-6 text-orange-600" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-slate-900 mb-1">{item.title}</h4>
+                      <p className="text-slate-600">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              
-              <button className="bg-white text-teal-900 px-8 py-4 rounded-full font-semibold hover:bg-teal-50 transition-all transform hover:scale-105 inline-flex items-center space-x-2">
-                <span>Register Now</span>
-                <ChevronRight className="w-5 h-5" />
-              </button>
             </div>
             
             <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <div className="aspect-[4/3] bg-gradient-to-br from-teal-800 to-emerald-800 flex items-center justify-center border border-white/10">
-                  {/* Placeholder for advanced training image */}
-                  <div className="text-center p-8">
-                    <Globe className="w-24 h-24 text-teal-300 mx-auto mb-4 opacity-50" />
-                    <p className="text-teal-200">Advanced Training Workshop</p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4 mt-8">
+                  <div className="bg-slate-100 rounded-2xl p-6 aspect-square flex items-center justify-center">
+                    <div className="text-center">
+                      <Handshake className="w-16 h-16 text-slate-400 mx-auto mb-2" />
+                      <p className="text-sm text-slate-500">Community Partnership</p>
+                    </div>
+                  </div>
+                  <div className="bg-orange-100 rounded-2xl p-6 aspect-[4/3] flex items-center justify-center">
+                    <div className="text-center">
+                      <Users className="w-16 h-16 text-orange-400 mx-auto mb-2" />
+                      <p className="text-sm text-orange-700">Group Training</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="bg-blue-100 rounded-2xl p-6 aspect-[4/3] flex items-center justify-center">
+                    <div className="text-center">
+                      <BookOpen className="w-16 h-16 text-blue-400 mx-auto mb-2" />
+                      <p className="text-sm text-blue-700">Material Development</p>
+                    </div>
+                  </div>
+                  <div className="bg-slate-100 rounded-2xl p-6 aspect-square flex items-center justify-center">
+                    <div className="text-center">
+                      <Award className="w-16 h-16 text-slate-400 mx-auto mb-2" />
+                      <p className="text-sm text-slate-500">Certification</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              {/* Decorative elements */}
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-yellow-400 rounded-full opacity-10 blur-3xl" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Impact Stats Section */}
-      <section id="impact" className="py-20 bg-white">
+      {/* Partners Section */}
+      <section className="py-16 bg-slate-50 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Impact in East Africa</h2>
-            <p className="text-lg text-gray-600">Making a difference across Tanzania and beyond</p>
-          </div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { number: '500+', label: 'Caregivers Trained', sublabel: 'Across East Africa' },
-              { number: '12', label: 'Regions in Tanzania', sublabel: 'Active programs' },
-              { number: '50+', label: 'Organizations', sublabel: 'Partnering with us' },
-              { number: '10,000+', label: 'Children Impacted', sublabel: 'Through trained adults' }
-            ].map((stat, index) => (
-              <div key={index} className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-teal-50 transition-colors">
-                <p className="text-4xl lg:text-5xl font-bold text-teal-600 mb-2">{stat.number}</p>
-                <p className="font-semibold text-gray-900">{stat.label}</p>
-                <p className="text-sm text-gray-500">{stat.sublabel}</p>
+          <p className="text-center text-slate-500 font-semibold uppercase tracking-wider text-sm mb-8">Trusted by Leading Organizations Across East Africa</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-60">
+            {['Ministry of Health Tanzania', 'Save the Children', 'World Vision', 'UNICEF', 'Local NGOs'].map((partner, index) => (
+              <div key={index} className="text-xl font-bold text-slate-400 hover:text-slate-600 transition-colors">
+                {partner}
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-br from-orange-500 to-orange-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20" />
+        
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">Ready to Transform Your Community?</h2>
+          <p className="text-xl text-orange-100 mb-10 max-w-2xl mx-auto">
+            Whether you are an individual looking to learn or an organization seeking training, we are here to support your journey toward trauma-informed care.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-orange-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-50 transition-all transform hover:scale-105 shadow-xl">
+              Start Free Course
+            </button>
+            <button className="bg-orange-700 text-white border-2 border-orange-400 px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-800 transition-all">
+              Contact Our Team
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="bg-slate-900 text-slate-300 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div className="col-span-2">
-              <div className="flex items-center space-x-2 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-full flex items-center justify-center">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            {/* Brand */}
+            <div className="lg:col-span-1">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
                   <Heart className="w-6 h-6 text-white" fill="currentColor" />
                 </div>
-                <span className="text-xl font-bold">Trauma Competent Care</span>
+                <span className="text-xl font-bold text-white">Trauma Competent Care</span>
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
-                Building trauma-informed communities across East Africa, starting with Tanzania. Empowering caregivers, educators, and leaders to heal and transform lives.
+              <p className="text-slate-400 leading-relaxed mb-6">
+                Empowering East African communities with trauma-informed knowledge and skills since 2020.
               </p>
               <div className="flex space-x-4">
-                {['Twitter', 'LinkedIn', 'Facebook', 'Instagram'].map((social) => (
+                {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
                   <a 
-                    key={social} 
+                    key={index} 
                     href="#" 
-                    className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-teal-600 transition-colors"
+                    className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all"
                   >
-                    <span className="text-xs font-bold">{social[0]}</span>
+                    <Icon className="w-5 h-5" />
                   </a>
                 ))}
               </div>
             </div>
-            
+
+            {/* Quick Links */}
             <div>
-              <h4 className="font-bold text-lg mb-6">Quick Links</h4>
+              <h4 className="text-white font-bold text-lg mb-6">Programs</h4>
               <ul className="space-y-3">
-                {['About Us', 'Training Programs', 'Become a Trainer', 'Resources', 'Contact'].map((link) => (
+                {['Introduction Course', 'Certification Program', 'Organizational Training', 'Trainer Program', 'Resources'].map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors">{link}</a>
+                    <a href="#" className="hover:text-orange-400 transition-colors">{link}</a>
                   </li>
                 ))}
               </ul>
             </div>
-            
+
+            {/* Company */}
             <div>
-              <h4 className="font-bold text-lg mb-6">Contact Us</h4>
-              <ul className="space-y-3 text-gray-400">
+              <h4 className="text-white font-bold text-lg mb-6">Company</h4>
+              <ul className="space-y-3">
+                {['About Us', 'Our Team', 'Impact Stories', 'Careers', 'Contact'].map((link) => (
+                  <li key={link}>
+                    <a href="#" className="hover:text-orange-400 transition-colors">{link}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="text-white font-bold text-lg mb-6">Contact Us</h4>
+              <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
-                  <span>Dar es Salaam, Tanzania<br />East Africa</span>
+                  <MapPin className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
+                  <span>123 Community Road<br />Dar es Salaam, Tanzania</span>
                 </li>
-                <li>info@traumacompetentcare.org</li>
-                <li>+255 123 456 789</li>
+                <li className="flex items-center space-x-3">
+                  <Mail className="w-5 h-5 text-orange-500 flex-shrink-0" />
+                  <span>info@traumacompetentcare.org</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <Phone className="w-5 h-5 text-orange-500 flex-shrink-0" />
+                  <span>+255 123 456 789</span>
+                </li>
               </ul>
             </div>
           </div>
-          
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 text-sm">
+
+          <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-slate-500 text-sm">
               © 2024 Trauma Competent Care East Africa. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-500">
+            <div className="flex space-x-6 text-sm text-slate-500">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
             </div>
           </div>
         </div>
