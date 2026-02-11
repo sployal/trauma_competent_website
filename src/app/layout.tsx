@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Trauma Competent Care - East Africa Initiative",
   description: "Equipping caregivers, educators, and community leaders across East Africa with trauma-informed knowledge and culturally-responsive practices.",
   icons: {
-    icon: "/header.png",
+    icon: "https://res.cloudinary.com/dacpiss4b/image/upload/v1770830987/header_tkpedg.png",
   },
 };
 

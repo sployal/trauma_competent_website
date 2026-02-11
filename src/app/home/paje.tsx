@@ -40,9 +40,9 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const images = [
-    '/section1/image1.jpeg',
-    '/section1/image2.jpeg',
-    '/section1/image3.jpeg'
+    'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831022/image1_aiajnn.jpg',
+    'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831021/image3_xchjyi.jpg',
+    'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831021/image2_xwisvs.jpg'
   ];
 
   useEffect(() => {
