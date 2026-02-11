@@ -37,6 +37,13 @@ export default function Home() {
   const [email, setEmail] = useState('');
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const images = [
+    '/section1/image1.jpeg',
+    '/section1/image2.jpeg',
+    '/section1/image3.jpeg'
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,6 +51,14 @@ export default function Home() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Image cycling animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+    return () => clearInterval(interval);
   }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -153,55 +168,55 @@ export default function Home() {
 
       {/* Hero Section */}
       <section 
-        className="relative min-h-[90vh] flex items-center overflow-hidden bg-slate-50 bg-cover bg-center bg-no-repeat"
+        className="relative min-h-[90vh] flex items-center overflow-hidden bg-slate-50 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out"
         style={{
-          backgroundImage: 'url(/section1/image1.jpeg)'
+          backgroundImage: `url(${images[currentImageIndex]})`
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-slate-800/70 to-orange-900/50" />
-        <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-blue-950/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-800/80 to-orange-900/70" />
+        <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-blue-950/50 to-transparent" />
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 max-w-2xl">
-              <div className="inline-flex items-center space-x-2 bg-white border border-orange-200 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
+              <div className="inline-flex items-center space-x-2 bg-white/95 border border-orange-200 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold shadow-md backdrop-blur-sm">
                 <MapPin className="w-4 h-4" />
                 <span>Now Serving Tanzania, Kenya, Uganda & Rwanda</span>
               </div>
               
-              <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] tracking-tight">
+              <h1 className="text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight">
                 Healing Starts With{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-orange-400">
                   Understanding
                 </span>
               </h1>
               
-              <p className="text-xl text-slate-600 leading-relaxed">
+              <p className="text-xl text-slate-100 leading-relaxed">
                 Equipping caregivers, educators, and community leaders across East Africa with trauma-informed knowledge and culturally-responsive practices. Together, we are building resilient communities where every child and adult can thrive.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <button className="bg-orange-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-orange-600 transition-all transform hover:scale-105 flex items-center justify-center space-x-2 shadow-xl shadow-orange-500/30">
+                <button className="bg-orange-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-orange-600 transition-all transform hover:scale-105 flex items-center justify-center space-x-2 shadow-xl shadow-orange-500/40">
                   <Play className="w-5 h-5" fill="currentColor" />
                   <span>Start Free Intro Course</span>
                 </button>
-                <button className="bg-white text-slate-800 border-2 border-slate-200 px-8 py-4 rounded-full font-semibold text-lg hover:border-orange-500 hover:text-orange-600 transition-all flex items-center justify-center group">
+                <button className="bg-white/95 text-slate-900 border-2 border-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:shadow-lg transition-all flex items-center justify-center group backdrop-blur-sm">
                   <span>Explore Programs</span>
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
 
-              <div className="flex items-center space-x-8 pt-6 border-t border-slate-200">
+              <div className="flex items-center space-x-8 pt-6 border-t border-white/30">
                 <div className="flex -space-x-3">
                   {['TZ', 'KE', 'UG', 'RW'].map((country, i) => (
-                    <div key={country} className="w-12 h-12 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 border-3 border-white flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                    <div key={country} className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 border-3 border-white flex items-center justify-center text-white text-xs font-bold shadow-lg">
                       {country}
                     </div>
                   ))}
                 </div>
                 <div>
-                  <p className="font-bold text-slate-900 text-lg">1,200+ Professionals Trained</p>
-                  <p className="text-slate-500 text-sm">Across 4 East African Countries</p>
+                  <p className="font-bold text-white text-lg">1,200+ Professionals Trained</p>
+                  <p className="text-slate-200 text-sm">Across 4 East African Countries</p>
                 </div>
               </div>
             </div>
@@ -236,6 +251,22 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Image Carousel Indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50 flex items-center space-x-3">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`h-3 rounded-full transition-all duration-300 cursor-pointer ${
+                index === currentImageIndex 
+                  ? 'w-8 bg-orange-500' 
+                  : 'w-3 bg-white/60 hover:bg-white'
+              }`}
+              aria-label={`Go to image ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 
