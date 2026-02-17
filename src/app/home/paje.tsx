@@ -455,11 +455,12 @@ export default function Home() {
             <div className="order-2 lg:order-1 relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-orange-200 to-orange-300 rounded-[2rem] opacity-30 blur-2xl" />
               <div className="relative bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-slate-100">
-                <div className="aspect-[4/3] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
-                  <div className="text-center p-12">
-                    <Award className="w-24 h-24 text-slate-300 mx-auto mb-4" />
-                    <p className="text-slate-500 font-medium">Affiliate Trainer Certification</p>
-                  </div>
+                <div className="aspect-[4/3] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="https://res.cloudinary.com/dacpiss4b/image/upload/v1770831022/image1_aiajnn.jpg"
+                    alt="Affiliate Trainer Certification"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-8">
                   <p className="text-white font-semibold text-lg">Join our network of 50+ certified trainers across East Africa</p>
