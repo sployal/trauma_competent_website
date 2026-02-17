@@ -220,36 +220,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
-            <div className="relative lg:h-[600px] flex items-center justify-center">
-              <div className="relative w-full max-w-lg">
-                <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-[2rem] opacity-20 blur-2xl" />
-                <div className="relative bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-slate-100">
-                  <div className="aspect-[4/5] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center relative">
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent z-10" />
-                    <Users className="w-32 h-32 text-slate-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20 text-white">
-                      <p className="text-sm font-semibold uppercase tracking-wider text-orange-400 mb-2">Featured Story</p>
-                      <h3 className="text-2xl font-bold mb-2">Transforming Care in Moshi</h3>
-                      <p className="text-slate-200 text-sm">How one community changed their approach to vulnerable children</p>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Floating Stats Card */}
-                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-slate-100 z-30">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                      <Star className="w-6 h-6 text-orange-600" fill="currentColor" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold text-slate-900">98%</p>
-                      <p className="text-sm text-slate-500">Satisfaction Rate</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
 
