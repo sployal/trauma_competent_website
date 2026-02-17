@@ -113,7 +113,10 @@ export default function Home() {
   const images = [
     'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831022/image1_aiajnn.jpg',
     'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831021/image3_xchjyi.jpg',
-    'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831021/image2_xwisvs.jpg'
+    'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831021/image2_xwisvs.jpg',
+    'https://res.cloudinary.com/dacpiss4b/image/upload/v1771358313/image5_acuxey.jpg',
+    'https://res.cloudinary.com/dacpiss4b/image/upload/v1771358314/image6_my52go.jpg',
+    'https://res.cloudinary.com/dacpiss4b/image/upload/v1771358314/image4_kfz5ke.jpg'
   ];
 
   useEffect(() => {
@@ -236,7 +239,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-800/80 to-orange-900/70" />
         <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-blue-950/50 to-transparent" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative w-full px-4 sm:px-6 lg:px-8 py-20">
           <div className="max-w-2xl space-y-8">
             <div className="fade-up inline-flex items-center gap-2 bg-white/95 border border-orange-200 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold shadow-md backdrop-blur-sm">
               <MapPin className="w-4 h-4" />
