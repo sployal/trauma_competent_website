@@ -208,11 +208,34 @@ export default function Home() {
 
               <div className="flex items-center space-x-8 pt-6 border-t border-white/30">
                 <div className="flex -space-x-3">
-                  {['TZ', 'KE', 'UG', 'RW'].map((country, i) => (
-                    <div key={country} className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 border-3 border-white flex items-center justify-center text-white text-xs font-bold shadow-lg">
-                      {country}
-                    </div>
-                  ))}
+                  <div className="w-12 h-12 rounded-full border-3 border-white shadow-lg overflow-hidden flex items-center justify-center bg-white">
+                    <img 
+                      src="https://res.cloudinary.com/dacpiss4b/image/upload/v1771353145/tanzania_yij6cb.png"
+                      alt="Tanzania flag"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="w-12 h-12 rounded-full border-3 border-white shadow-lg overflow-hidden flex items-center justify-center bg-white">
+                    <img 
+                      src="https://res.cloudinary.com/dacpiss4b/image/upload/v1771353145/kenya_xz2tvq.png"
+                      alt="Kenya flag"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="w-12 h-12 rounded-full border-3 border-white shadow-lg overflow-hidden flex items-center justify-center bg-white">
+                    <img 
+                      src="https://res.cloudinary.com/dacpiss4b/image/upload/v1771353145/uganda_zkys3a.png"
+                      alt="Uganda flag"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="w-12 h-12 rounded-full border-3 border-white shadow-lg overflow-hidden flex items-center justify-center bg-white">
+                    <img 
+                      src="https://res.cloudinary.com/dacpiss4b/image/upload/v1771353144/rwanda_ekxhbp.png"
+                      alt="Rwanda flag"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
                 <div>
                   <p className="font-bold text-white text-lg">1,200+ Professionals Trained</p>
