@@ -75,7 +75,7 @@ const testimonials = [
     stars: 5
   },
   {
-    quote: "Our school's suspension rates dropped by 40% after staff completed the program. Children feel safe and supported now.",
+    quote: "Our school's suspension rates dropped significantly after staff completed the program. Children feel safe and supported now.",
     author: "Peter Olweny",
     role: "Headmaster, St. Andrew's Primary",
     location: "Kisumu, Kenya",
@@ -111,7 +111,7 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const images = [
-    'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831022/image1_aiajnn.jpg',
+    'https://res.cloudinary.com/dacpiss4b/image/upload/v1771361060/image7_mjdzvv.jpg',
     'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831021/image3_xchjyi.jpg',
     'https://res.cloudinary.com/dacpiss4b/image/upload/v1770831021/image2_xwisvs.jpg',
     'https://res.cloudinary.com/dacpiss4b/image/upload/v1771358313/image5_acuxey.jpg',
@@ -132,7 +132,7 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert('Asante sana! Thank you for subscribing. We will be in touch soon.');
     setEmail('');
@@ -254,7 +254,7 @@ export default function Home() {
             </h1>
 
             <p className="fade-up-3 text-xl text-slate-100 leading-relaxed">
-              Equipping caregivers, educators, and community leaders across East Africa with trauma-informed knowledge and culturally-responsive practices. Together, we are building resilient communities where every child and adult can thrive.
+              Equipping caregivers, educators, and community leaders across East Africa with trauma-informed knowledge and culturally-responsive practices. In partnership with Trauma Free World, we are building resilient communities where every child can thrive in the care of well-equipped adults.
             </p>
 
             <div className="fade-up-3 flex flex-col sm:flex-row gap-4 pt-4">
@@ -282,8 +282,8 @@ export default function Home() {
                 ))}
               </div>
               <div>
-                <p className="font-bold text-white text-lg">1,200+ Professionals Trained</p>
-                <p className="text-slate-200 text-sm">Across 4 East African Countries</p>
+                <p className="font-bold text-white text-lg">Growing Across East Africa</p>
+                <p className="text-slate-200 text-sm">Expanding Our Network of Trained Professionals</p>
               </div>
             </div>
           </div>
@@ -299,6 +299,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Trauma Free World Banner ── */}
+      <div className="bg-orange-50 border-y border-orange-100 py-5">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
+          <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <Globe className="w-5 h-5 text-white" />
+          </div>
+          <p className="text-slate-700 font-medium">
+            We are proud to operate under the umbrella of{' '}
+            <span className="text-orange-600 font-bold">Trauma Free World</span>
+            {' '}— a global movement committed to healing communities through evidence-based, trauma-informed care.
+          </p>
+        </div>
+      </div>
+
       {/* ── About / Subscribe ── */}
       <section id="about" className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -307,12 +321,12 @@ export default function Home() {
             <span className="text-orange-500">Connection and Growth</span>
           </h2>
           <p className="text-xl text-slate-600 mb-12 leading-relaxed max-w-3xl mx-auto">
-            Across East Africa, from the bustling streets of Dar es Salaam to the rural communities of Arusha, trauma affects children, families, and professionals in ways we often do not recognize. It manifests as behavioral challenges, learning difficulties, and broken relationships—but it does not have to be this way.
+            Across East Africa, from the bustling streets of Dar es Salaam to the rural communities of Arusha, trauma affects children, families, and professionals in ways we often do not recognize. It manifests as behavioral challenges, learning difficulties, and broken relationships—but it does not have to be this way. Our vision is simple: every child raised by a caregiver who is well-informed and equipped to understand the impact of trauma.
           </p>
 
           <div className="bg-slate-50 rounded-3xl p-8 lg:p-12 border border-slate-100">
             <h3 className="text-2xl font-bold text-slate-900 mb-3">Begin Your Journey Today</h3>
-            <p className="text-slate-600 mb-8">Join thousands of East African professionals learning to create trauma-informed environments</p>
+            <p className="text-slate-600 mb-8">Join a growing community of East African professionals learning to create trauma-informed environments</p>
             <form onSubmit={handleSubscribe} className="max-w-lg mx-auto flex flex-col sm:flex-row gap-3">
               <input
                 type="email" value={email} onChange={(e) => setEmail(e.target.value)}
@@ -424,11 +438,27 @@ export default function Home() {
             </div>
           </div>
 
+          {/* ── UPDATED: Community workshop is 1 full day ── */}
           <div className="grid md:grid-cols-3 gap-6 mt-8">
             {[
-              { icon: Users,  title: 'Organizational Training', desc: 'Customized workshops for schools, NGOs, and healthcare facilities', duration: '1-3 days' },
-              { icon: Globe,  title: 'Community Workshops',     desc: 'Accessible training for community leaders and caregivers',           duration: 'Half-day' },
-              { icon: Clock,  title: 'Continuing Education',    desc: 'Advanced modules for certified professionals',                        duration: 'Ongoing' }
+              {
+                icon: Users,
+                title: 'Organizational Training',
+                desc: 'Customized workshops for schools, NGOs, and faith-based organizations',
+                duration: '1–3 days'
+              },
+              {
+                icon: Globe,
+                title: 'Community Workshops',
+                desc: 'A full one-day introduction to trauma-informed care for community leaders and caregivers. This is the gateway into our training journey.',
+                duration: '1 full day'
+              },
+              {
+                icon: Clock,
+                title: 'Continuing Education',
+                desc: 'Advanced modules for certified professionals looking to deepen their practice',
+                duration: 'Ongoing'
+              }
             ].map((p, i) => (
               <div key={i} className="bg-slate-50 rounded-2xl p-6 hover:bg-white hover:shadow-lg transition-all duration-300 border border-transparent hover:border-slate-100">
                 <p.icon className="w-10 h-10 text-orange-500 mb-4" />
@@ -455,12 +485,14 @@ export default function Home() {
                     alt="Affiliate Trainer Certification" className="w-full h-full object-cover" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-8">
-                  <p className="text-white font-semibold text-lg">Join our network of 50+ certified trainers across East Africa</p>
+                  <p className="text-white font-semibold text-lg">Join our growing network of certified affiliate trainers across East Africa</p>
                 </div>
               </div>
+              {/* ── UPDATED: Goal-oriented framing, not an inflated number ── */}
               <div className="absolute -top-6 -right-6 bg-orange-500 text-white rounded-2xl p-4 shadow-xl z-10">
-                <p className="text-3xl font-bold">50+</p>
-                <p className="text-sm opacity-90">Certified Trainers</p>
+                <p className="text-2xl font-bold">Our Goal</p>
+                <p className="text-sm opacity-90">100+ Trainers Across</p>
+                <p className="text-sm opacity-90">East Africa</p>
               </div>
             </div>
 
@@ -472,15 +504,15 @@ export default function Home() {
                 Become a Certified Affiliate Trainer
               </h2>
               <p className="text-lg text-slate-600 leading-relaxed">
-                Our Affiliate Trainer Program empowers local professionals—social workers, teachers, counselors, and healthcare providers—to bring trauma-informed care training to their own communities. This is not just training; it is a movement led by East Africans for East Africans.
+                Our Affiliate Trainer Program is at the heart of everything we do. We believe the most powerful change happens when local professionals—social workers, teachers, counselors, healthcare providers, and church leaders—are equipped to bring trauma-informed care training to their own communities. Our goal is simple: as many trained affiliate trainers as possible, so that every child grows up with caregivers who truly understand them.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-4 py-4">
                 {[
                   { icon: BookOpen,  text: 'Comprehensive training manual in Swahili & English' },
-                  { icon: Handshake, text: 'Ongoing mentorship and support' },
-                  { icon: Globe,     text: 'Access to global best practices' },
-                  { icon: Users,     text: 'Join a network of change-makers' }
+                  { icon: Handshake, text: 'Ongoing mentorship from national & international experts' },
+                  { icon: Globe,     text: 'Access to global best practices via Trauma Free World' },
+                  { icon: Users,     text: 'Join a movement led by East Africans for East Africans' }
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3 p-4 bg-white rounded-xl border border-slate-100">
                     <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -512,16 +544,38 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Stats */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Our Impact Across East Africa</h2>
-            <p className="text-xl text-slate-300 max-w-2xl mx-auto">Measurable change in communities throughout Tanzania and beyond</p>
+            {/* ── UPDATED: Honest "early stage" framing ── */}
+            <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/30 text-orange-300 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <Star className="w-4 h-4" fill="currentColor" />
+              <span>We Are Just Getting Started — And the Momentum Is Real</span>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Our Impact So Far</h2>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">Every great movement begins somewhere. Here is where we stand today — and where we are headed.</p>
           </div>
 
+          {/* ── UPDATED: Accurate, honest stats ── */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {[
-              { number: '1,200+', label: 'Professionals Trained', sublabel: 'Across 4 countries' },
-              { number: '18',     label: 'Regions in Tanzania',   sublabel: 'Active programs' },
-              { number: '85+',    label: 'Partner Organizations', sublabel: 'Schools, NGOs, clinics' },
-              { number: '25,000+',label: 'Children Impacted',     sublabel: 'Through trained adults' }
+              {
+                number: '< 30',
+                label: 'Certified Affiliate Trainers',
+                sublabel: 'And actively growing'
+              },
+              {
+                number: '1',
+                label: 'Active Program in Tanzania',
+                sublabel: 'Our foundation — building strong'
+              },
+              {
+                number: '< 10',
+                label: 'Partner Organizations',
+                sublabel: 'Schools, NGOs & churches trained'
+              },
+              {
+                number: '10,000+',
+                label: 'Children to Reach by 2030',
+                sublabel: 'Through equipped caregivers'
+              }
             ].map((stat, i) => (
               <div key={i} className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-colors">
                 <p className="text-4xl lg:text-5xl font-bold text-orange-500 mb-2">{stat.number}</p>
@@ -529,6 +583,15 @@ export default function Home() {
                 <p className="text-slate-400 text-sm">{stat.sublabel}</p>
               </div>
             ))}
+          </div>
+
+          {/* ── Expertise callout ── */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mb-16 text-center max-w-3xl mx-auto">
+            <Globe className="w-10 h-10 text-orange-400 mx-auto mb-4" />
+            <h3 className="text-2xl font-bold text-white mb-3">National & International Expertise</h3>
+            <p className="text-slate-300 leading-relaxed">
+              Our training draws on the combined knowledge of experienced East African professionals and international specialists through our partnership with Trauma Free World. This blend ensures our programs are both globally evidence-based and locally relevant.
+            </p>
           </div>
 
           {/* ── Scrolling Testimonials Marquee ── */}
@@ -591,14 +654,26 @@ export default function Home() {
               <span className="text-orange-600 font-semibold uppercase tracking-wider text-sm">Why Trauma Competent Care</span>
               <h2 className="text-4xl font-bold text-slate-900 mt-2 mb-6 leading-tight">Culturally-Responsive, Evidence-Based, Community-Focused</h2>
               <p className="text-lg text-slate-600 mb-8">
-                We do not just import Western models. We collaborate with local experts, elders, and professionals to ensure our training resonates with East African values, traditions, and contexts.
+                We do not simply import Western models. Working alongside national and international experts—and under the framework of Trauma Free World—we collaborate with local professionals, community leaders, and faith communities to ensure our training is rooted in East African values, traditions, and lived realities.
               </p>
 
               <div className="space-y-6">
                 {[
-                  { title: 'Local Expertise',     desc: 'Our curriculum is developed in partnership with Tanzanian and East African mental health professionals', icon: MapPin },
-                  { title: 'Sustainable Impact',  desc: 'We train local trainers, ensuring knowledge stays and grows within the community',                       icon: Lightbulb },
-                  { title: 'Holistic Approach',   desc: 'Addressing spiritual, emotional, and physical aspects of healing in line with African holistic health perspectives', icon: Heart }
+                  {
+                    title: 'Local & Global Expertise',
+                    desc: 'Our curriculum brings together Tanzanian and East African mental health professionals alongside international specialists, ensuring training that is both globally informed and locally meaningful.',
+                    icon: Globe
+                  },
+                  {
+                    title: 'Sustainable Through Affiliate Trainers',
+                    desc: 'We invest heavily in training local trainers so that knowledge takes root and multiplies within communities—reaching more caregivers and ultimately more children.',
+                    icon: Lightbulb
+                  },
+                  {
+                    title: 'Holistic & Culturally Grounded',
+                    desc: 'Addressing spiritual, emotional, and physical dimensions of healing in line with African holistic health perspectives and the Ubuntu philosophy of communal wellbeing.',
+                    icon: Heart
+                  }
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -647,12 +722,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Partners ── */}
+      {/* ── Partners — UPDATED: honest early-stage framing ── */}
       <section className="py-16 bg-slate-50 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-slate-500 font-semibold uppercase tracking-wider text-sm mb-8">Trusted by Leading Organizations Across East Africa</p>
+          <p className="text-center text-slate-500 font-semibold uppercase tracking-wider text-sm mb-3">
+            Organizations We Have Trained So Far
+          </p>
+          <p className="text-center text-slate-400 text-sm mb-8 max-w-xl mx-auto">
+            We have begun partnering with schools, NGOs, and churches across Tanzania. These early relationships are the seeds of a much larger movement.
+          </p>
           <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-60">
-            {['Ministry of Health Tanzania','Save the Children','World Vision','UNICEF','Local NGOs'].map((p, i) => (
+            {['Local Schools','NGOs','Faith Communities & Churches','Partner Organizations'].map((p, i) => (
               <div key={i} className="text-xl font-bold text-slate-400 hover:text-slate-600 transition-colors">{p}</div>
             ))}
           </div>
@@ -667,7 +747,7 @@ export default function Home() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">Ready to Transform Your Community?</h2>
           <p className="text-xl text-orange-100 mb-10 max-w-2xl mx-auto">
-            Whether you are an individual looking to learn or an organization seeking training, we are here to support your journey toward trauma-informed care.
+            Whether you are an individual looking to learn, a caregiver wanting to do better for the children in your life, or an organization seeking training—we are here to walk this journey with you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-white text-orange-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-50 transition-all hover:scale-105 shadow-xl">
@@ -685,14 +765,15 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             <div className="lg:col-span-1">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
                   <Heart className="w-6 h-6 text-white" fill="currentColor" />
                 </div>
                 <span className="text-xl font-bold text-white">Trauma Competent Care</span>
               </div>
+              <p className="text-xs text-orange-400 font-semibold uppercase tracking-wider mb-4">An Initiative Under Trauma Free World</p>
               <p className="text-slate-400 leading-relaxed mb-6">
-                Empowering East African communities with trauma-informed knowledge and skills since 2020.
+                Empowering East African communities with trauma-informed knowledge and skills. Every child deserves a caregiver who understands them.
               </p>
               <div className="flex gap-4">
                 {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
@@ -706,7 +787,7 @@ export default function Home() {
             <div>
               <h4 className="text-white font-bold text-lg mb-6">Programs</h4>
               <ul className="space-y-3">
-                {['Introduction Course','Certification Program','Organizational Training','Trainer Program','Resources'].map(l => (
+                {['Introduction Course','Certification Program','Organizational Training','Become an Affiliate Trainer','Resources'].map(l => (
                   <li key={l}><a href="#" className="hover:text-orange-400 transition-colors">{l}</a></li>
                 ))}
               </ul>
@@ -741,7 +822,7 @@ export default function Home() {
           </div>
 
           <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-500 text-sm">© 2024 Trauma Competent Care East Africa. All rights reserved.</p>
+            <p className="text-slate-500 text-sm">© 2024 Trauma Competent Care East Africa · Part of the Trauma Free World Network · All rights reserved.</p>
             <div className="flex gap-6 text-sm text-slate-500">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
